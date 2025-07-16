@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Bot Test</title>
+</head>
+<body>
+    <h1>🚀 Trading Bot Connection Test</h1>
+    <p>If you can see this, your browser is working!</p>
+    <p><a href="http://127.0.0.1:8000">Click here to access your Trading Bot</a></p>
+    <script>
+        fetch('http://127.0.0.1:8000')
+            .then(response => response.text())
+            .then(data => {
+                document.body.innerHTML += '<p style="color: green;">✅ Trading Bot is accessible!</p>';
+            })
+            .catch(error => {
+                document.body.innerHTML += '<p style="color: red;">❌ Cannot reach Trading Bot: ' + error + '</p>';
+            });
+    </script>
+</body>
+</html>
