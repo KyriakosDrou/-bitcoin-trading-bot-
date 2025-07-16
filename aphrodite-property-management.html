@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphrodite Property Management - Complete Property Solutions in Cyprus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000, #1a1a1a, #000000);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(2deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        /* Glassmorphism Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Main Content with Smooth Transitions */
+        .main-content {
+            min-height: 100vh;
+            padding-top: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Epic Hero Section */
+        .hero {
+            background: transparent;
+            color: #fff;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            background: linear-gradient(45deg, #fff, #ccc, #fff);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-text .highlight {
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            line-height: 1.5;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            height: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-image:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Spectacular CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+            color: #fff;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Value Propositions with 3D Effect */
+        .value-props {
+            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            perspective: 1000px;
+        }
+
+        .value-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-item:hover::before {
+            opacity: 1;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.1);
+        }
+
+        .value-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .value-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Page Headers with Dynamic Effects */
+        .page-header {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced Service Cards */
+        .services-section {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 80px rgba(255, 255, 255, 0.15);
+        }
+
+        .service-image {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-content {
+            padding: 3rem;
+            color: #fff;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.8rem 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-features li:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .service-features li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+        }
+
+        /* Co-Ownership Special Effects */
+        .co-ownership-header {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 73, 94, 0.8) 100%);
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .co-ownership-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: stars 20s linear infinite;
+        }
+
+        @keyframes stars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .co-ownership-content {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .problem-statement {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 4rem;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-statement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: ripple 4s ease-in-out infinite;
+        }
+
+        @keyframes ripple {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .problem-statement h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .problem-statement p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solutions-grid-co {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .solution-card-co {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card-co:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 80px rgba(255, 255, 255, 0.1);
+        }
+
+        .solution-number {
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            color: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .solution-card-co h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .solution-card-co p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-benefits {
+            list-style: none;
+            padding: 0;
+        }
+
+        .solution-benefits li {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .solution-benefits li:hover {
+            color: #fff;
+            transform: translateX(10px);
+        }
+
+        .solution-benefits li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .solution-benefits li:hover::before {
+            transform: translateX(5px);
+        }
+
+        /* Calculator with Futuristic Design */
+        .calculator-header {
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(51, 51, 51, 0.8) 100%);
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            animation: scanner 3s linear infinite;
+        }
+
+        @keyframes scanner {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .calculator-content {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .calculator-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+        }
+
+        .calculator-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3));
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .calculate-btn:hover::before {
+            left: 100%;
+        }
+
+        .calculate-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+        }
+
+        .results-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            color: #fff;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .results-panel h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateX(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .result-label {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .highlight-result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* About Section with 3D Cards */
+        .about-content {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 4rem;
+            perspective: 1000px;
+        }
+
+        .founder-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .founder-card:hover::before {
+            opacity: 1;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-15px) rotateX(10deg) rotateY(5deg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15);
+        }
+
+        .founder-photo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        .founder-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: photoRotate 4s linear infinite;
+        }
+
+        @keyframes photoRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .founder-card:hover .founder-photo {
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .founder-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-title {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-bio {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-bio p {
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact Section with Glow Effects */
+        .contact-content {
+            padding: 60px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: contactGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes contactGlow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .contact-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .contact-image {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .contact-image:hover {
+            transform: scale(1.02);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Solutions Grid Enhanced */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .solution-card:hover::before {
+            opacity: 1;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 80px rgba(255, 255, 255, 0.15);
+        }
+
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .solution-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solution-desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solution-features {
+            list-style: none;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solution-features li {
+            padding: 0.3rem 0;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .solution-features li:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .solution-features li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #fff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+            animation: footerShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes footerShimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Page Transition Effects */
+        .page-transition {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Particle System */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 10s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Mobile Responsive Enhancements */
+        @media (max-width: 968px) {
+            .nav {
+                padding: 0 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid,
+            .calculator-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid,
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .founder-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        /* Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Particle System -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo" onclick="showPage('home')">Aphrodite Property Management</a>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                <li><a href="#" onclick="showPage('services')" class="nav-link">Services</a></li>
+                <li><a href="#" onclick="showPage('co-ownership')" class="nav-link">Co-Ownership</a></li>
+                <li><a href="#" onclick="showPage('solutions')" class="nav-link">Complete Solutions</a></li>
+                <li><a href="#" onclick="showPage('calculator')" class="nav-link">Calculator</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content page-transition" id="main-content">
+        <!-- Content will be loaded here dynamically -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Aphrodite Property Management. All rights reserved. | Complete Property Solutions in Cyprus</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Page content definitions
+        const pageContents = {
+            home: `
+                <section class="hero">
+                    <div class="container">
+                        <div class="hero-content">
+                            <div class="hero-text">
+                                <h1>Complete <span class="highlight">Property Solutions</span> in Cyprus</h1>
+                                <p class="hero-subtitle">From property management to construction, renovation, valuation and everything in between. We're your single point of contact for all property needs in Cyprus.</p>
+                                <a href="#" onclick="showPage('services')" class="cta-button">Discover Our Services</a>
+                            </div>
+                            <div class="hero-image">
+                                Premium Cyprus Property Solutions
+                                <br><small>Professional property management and development services</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="value-props">
+                    <div class="container">
+                        <div class="value-grid">
+                            <div class="value-item">
+                                <h3 class="value-title">Property owners don't deal with anything — they simply collect returns.</h3>
+                                <p class="value-desc">Complete hands-off property management where we handle every detail, from tenant relations to maintenance, legal compliance, and financial reporting.</p>
+                            </div>
+                            <div class="value-item">
+                                <h3 class="value-title">One contact for all your property needs — construction, renovation, valuation, everything.</h3>
+                                <p class="value-desc">Why juggle multiple contractors when you can have one trusted partner? Our network covers architects, builders, surveyors, landscapers, and every property professional you'll ever need.</p>
+                            </div>
+                            <div class="value-item">
+                                <h3 class="value-title">Legal expertise built into every service.</h3>
+                                <p class="value-desc">Founded by experienced lawyers who understand Cyprus property law inside and out. Every decision, every contract, every process is legally sound and compliant.</p>
+                            </div>
+                            <div class="value-item">
+                                <h3 class="value-title">International standards, local expertise.</h3>
+                                <p class="value-desc">We combine international best practices with deep knowledge of the Cyprus market, regulations, and business culture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            
+            services: `
+                <div class="page-header">
+                    <div class="container">
+                        <h1 class="page-title">Property Management Services</h1>
+                        <p class="page-subtitle">Comprehensive property management solutions designed for the discerning investor. Each package builds upon the previous to deliver unparalleled service and complete peace of mind.</p>
+                    </div>
+                </div>
+
+                <section class="services-section">
+                    <div class="container">
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <div class="service-image">
+                                    Essential Package
+                                    <br><small>Basic property management services</small>
+                                </div>
+                                <div class="service-content">
+                                    <h3 class="service-title">Essential Package</h3>
+                                    <div class="service-price">€200 — €300 / month</div>
+                                    <ul class="service-features">
+                                        <li>Rent collection & automated payments</li>
+                                        <li>Basic maintenance coordination</li>
+                                        <li>Monthly financial reports</li>
+                                        <li>Tenant screening & lease agreements</li>
+                                        <li>Property insurance monitoring</li>
+                                        <li>Legal compliance assurance</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-image">
+                                    Premium Package
+                                    <br><small>Enhanced property management with 24/7 support</small>
+                                </div>
+                                <div class="service-content">
+                                    <h3 class="service-title">Premium Package</h3>
+                                    <div class="service-price">€400 — €600 / month</div>
+                                    <ul class="service-features">
+                                        <li>All Essential services included</li>
+                                        <li>24/7 emergency response hotline</li>
+                                        <li>Quarterly property inspections</li>
+                                        <li>Seasonal maintenance programs</li>
+                                        <li>Professional photography & marketing</li>
+                                        <li>Multi-platform listing management</li>
+                                        <li>Airbnb management available</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="service-card">
+                                <div class="service-image">
+                                    White Glove Package
+                                    <br><small>Complete luxury property management solution</small>
+                                </div>
+                                <div class="service-content">
+                                    <h3 class="service-title">White Glove Package</h3>
+                                    <div class="service-price">€600 — €1,000 / month</div>
+                                    <ul class="service-features">
+                                        <li>All Premium services included</li>
+                                        <li>Dedicated property manager</li>
+                                        <li>Guaranteed rent schemes</li>
+                                        <li>Smart home integration & monitoring</li>
+                                        <li>Property enhancement consulting</li>
+                                        <li>Complete renovation management</li>
+                                        <li>Investment portfolio optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            
+            'co-ownership': `
+                <div class="co-ownership-header">
+                    <div class="container">
+                        <h1 class="page-title">Co-Ownership Solutions</h1>
+                        <p class="page-subtitle">Unlocking Cyprus' dormant real estate potential. We mediate between co-owners to transform unused properties into profitable investments.</p>
+                    </div>
+                </div>
+
+                <section class="co-ownership-content">
+                    <div class="container">
+                        <div class="problem-statement">
+                            <h3>The Cyprus Co-Ownership Challenge</h3>
+                            <p>Thousands of properties across Cyprus remain unused due to disagreements between multiple owners. Inherited properties, family disputes, and complex ownership structures leave valuable real estate sitting idle.</p>
+                            <p><strong>We are the solution that brings co-owners together.</strong></p>
+                        </div>
+
+                        <div class="solutions-grid-co">
+                            <div class="solution-card-co">
+                                <div class="solution-number">1</div>
+                                <h4>Property Assessment & Mediation</h4>
+                                <p>We assess the property potential and facilitate discussions between all co-owners to find common ground.</p>
+                                <ul class="solution-benefits">
+                                    <li>Professional property valuation</li>
+                                    <li>Legal framework analysis</li>
+                                    <li>Neutral mediation services</li>
+                                    <li>Financial projections for all parties</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card-co">
+                                <div class="solution-number">2</div>
+                                <h4>Unanimous Sale Coordination</h4>
+                                <p>When all parties agree to sell, we manage the entire process to maximize returns for everyone involved.</p>
+                                <ul class="solution-benefits">
+                                    <li>Market timing optimization</li>
+                                    <li>Professional marketing & staging</li>
+                                    <li>Legal documentation coordination</li>
+                                    <li>Transparent profit distribution</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card-co">
+                                <div class="solution-number">3</div>
+                                <h4>Rental Income Sharing</h4>
+                                <p>Convert unused properties into rental income streams with fair distribution among all co-owners.</p>
+                                <ul class="solution-benefits">
+                                    <li>Property preparation & renovation</li>
+                                    <li>Professional property management</li>
+                                    <li>Monthly income distribution</li>
+                                    <li>Transparent accounting & reporting</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card-co">
+                                <div class="solution-number">4</div>
+                                <h4>Buyout Facilitation</h4>
+                                <p>Help one co-owner buy out the others at fair market value, resolving disputes permanently.</p>
+                                <ul class="solution-benefits">
+                                    <li>Independent property valuation</li>
+                                    <li>Financing assistance coordination</li>
+                                    <li>Legal transfer documentation</li>
+                                    <li>Dispute resolution support</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card-co">
+                                <div class="solution-number">5</div>
+                                <h4>Development Partnership</h4>
+                                <p>Partner with co-owners to develop or significantly improve the property for maximum value creation.</p>
+                                <ul class="solution-benefits">
+                                    <li>Development feasibility studies</li>
+                                    <li>Planning permission assistance</li>
+                                    <li>Construction project management</li>
+                                    <li>Profit sharing agreements</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card-co">
+                                <div class="solution-number">6</div>
+                                <h4>Legal Resolution Support</h4>
+                                <p>When mediation isn't enough, we coordinate with legal specialists to resolve ownership disputes.</p>
+                                <ul class="solution-benefits">
+                                    <li>Property law specialist coordination</li>
+                                    <li>Court proceeding support</li>
+                                    <li>Asset protection strategies</li>
+                                    <li>Post-resolution property management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            solutions: `
+                <div class="page-header">
+                    <div class="container">
+                        <h1 class="page-title">Complete Property Solutions</h1>
+                        <p class="page-subtitle">Beyond property management — we're your complete property partner. Whatever you need, we have the expertise and network to deliver.</p>
+                    </div>
+                </div>
+
+                <section class="services-section">
+                    <div class="container">
+                        <div class="solutions-grid">
+                            <div class="solution-card">
+                                <div class="solution-icon">🏗️</div>
+                                <h3 class="solution-title">Construction & Development</h3>
+                                <p class="solution-desc">Want to build your dream property? We have the complete network to make it happen.</p>
+                                <ul class="solution-features">
+                                    <li>Architects & design consultants</li>
+                                    <li>Licensed contractors & builders</li>
+                                    <li>Project management & coordination</li>
+                                    <li>Permit applications & approvals</li>
+                                    <li>Quality control & inspections</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card">
+                                <div class="solution-icon">🔨</div>
+                                <h3 class="solution-title">Renovation & Restoration</h3>
+                                <p class="solution-desc">Transform your existing property with our comprehensive renovation services.</p>
+                                <ul class="solution-features">
+                                    <li>Complete home renovations</li>
+                                    <li>Kitchen & bathroom specialists</li>
+                                    <li>Interior design & styling</li>
+                                    <li>Historic property restoration</li>
+                                    <li>Energy efficiency upgrades</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card">
+                                <div class="solution-icon">📊</div>
+                                <h3 class="solution-title">Property Valuation</h3>
+                                <p class="solution-desc">Accurate property valuations for investment, sale, or refinancing decisions.</p>
+                                <ul class="solution-features">
+                                    <li>Certified property valuers</li>
+                                    <li>Market analysis & reporting</li>
+                                    <li>Investment potential assessment</li>
+                                    <li>Insurance valuations</li>
+                                    <li>Legal compliance certification</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card">
+                                <div class="solution-icon">📐</div>
+                                <h3 class="solution-title">Surveying & Planning</h3>
+                                <p class="solution-desc">Professional surveying services for all your property development needs.</p>
+                                <ul class="solution-features">
+                                    <li>Land & boundary surveys</li>
+                                    <li>Topographical surveys</li>
+                                    <li>Building condition surveys</li>
+                                    <li>Planning applications</li>
+                                    <li>Legal documentation support</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card">
+                                <div class="solution-icon">🚜</div>
+                                <h3 class="solution-title">Earthworks & Site Preparation</h3>
+                                <p class="solution-desc">Complete site preparation and earthworks for any scale of development.</p>
+                                <ul class="solution-features">
+                                    <li>Excavation & site clearing</li>
+                                    <li>Foundation preparation</li>
+                                    <li>Drainage systems</li>
+                                    <li>Access road construction</li>
+                                    <li>Environmental compliance</li>
+                                </ul>
+                            </div>
+
+                            <div class="solution-card">
+                                <div class="solution-icon">🌿</div>
+                                <h3 class="solution-title">Landscaping & Gardens</h3>
+                                <p class="solution-desc">Create beautiful outdoor spaces that complement your property perfectly.</p>
+                                <ul class="solution-features">
+                                    <li>Garden design & planning</li>
+                                    <li>Irrigation system installation</li>
+                                    <li>Swimming pool construction</li>
+                                    <li>Outdoor living spaces</li>
+                                    <li>Maintenance programs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            calculator: `
+                <div class="calculator-header">
+                    <div class="container">
+                        <h1 class="page-title">Property Revenue Calculator</h1>
+                        <p class="page-subtitle">Discover your property's potential with our professional assessment. Get an instant estimate of valuation and monthly returns.</p>
+                    </div>
+                </div>
+
+                <section class="calculator-content">
+                    <div class="container">
+                        <div class="calculator-container">
+                            <div class="calculator-form">
+                                <h3>Property Details</h3>
+                                <form id="propertyCalculator">
+                                    <div class="form-group">
+                                        <label for="location">Location</label>
+                                        <select id="location" required>
+                                            <option value="">Select Location</option>
+                                            <option value="nicosia">Nicosia</option>
+                                            <option value="limassol">Limassol</option>
+                                            <option value="larnaca">Larnaca</option>
+                                            <option value="paphos">Paphos</option>
+                                            <option value="famagusta">Famagusta</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="propertyType">Property Type</label>
+                                        <select id="propertyType" required>
+                                            <option value="">Select Type</option>
+                                            <option value="apartment">Apartment</option>
+                                            <option value="villa">Villa</option>
+                                            <option value="townhouse">Townhouse</option>
+                                            <option value="commercial">Commercial</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bedrooms">Bedrooms</label>
+                                        <select id="bedrooms">
+                                            <option value="1">1 Bedroom</option>
+                                            <option value="2">2 Bedrooms</option>
+                                            <option value="3">3 Bedrooms</option>
+                                            <option value="4">4+ Bedrooms</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="area">Area (sqm)</label>
+                                        <input type="number" id="area" placeholder="e.g. 120" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="condition">Property Condition</label>
+                                        <select id="condition">
+                                            <option value="excellent">Excellent</option>
+                                            <option value="good">Good</option>
+                                            <option value="average">Average</option>
+                                            <option value="needs-renovation">Needs Renovation</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" id="name" placeholder="Full Name" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" placeholder="your@email.com" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" placeholder="+357 XX XXX XXX" required>
+                                    </div>
+
+                                    <button type="submit" class="calculate-btn">Calculate Property Value & Returns</button>
+                                </form>
+                            </div>
+
+                            <div class="results-panel" id="resultsPanel" style="display: none;">
+                                <h3>Your Property Assessment</h3>
+                                
+                                <div class="result-item">
+                                    <span class="result-label">Estimated Market Value:</span>
+                                    <span class="result-value" id="marketValue">€0</span>
+                                </div>
+
+                                <div class="result-item">
+                                    <span class="result-label">Monthly Rental Income:</span>
+                                    <span class="result-value" id="monthlyRent">€0</span>
+                                </div>
+
+                                <div class="result-item">
+                                    <span class="result-label">Annual Yield:</span>
+                                    <span class="result-value" id="annualYield">0%</span>
+                                </div>
+
+                                <div class="highlight-result">
+                                    <div class="result-item">
+                                        <span class="result-label"><strong>Net Monthly Income (After Management):</strong></span>
+                                        <span class="result-value" id="netIncome">€0</span>
+                                    </div>
+                                </div>
+
+                                <div class="result-item">
+                                    <span class="result-label">Airbnb Potential (Monthly):</span>
+                                    <span class="result-value" id="airbnbIncome">€0</span>
+                                </div>
+
+                                <div style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)); color: #fff; padding: 2rem; border-radius: 10px; margin-top: 2rem; text-align: center; border: 1px solid rgba(255, 255, 255, 0.2);">
+                                    <h4 style="margin-bottom: 1rem; font-size: 1.3rem;">Want a Professional Valuation?</h4>
+                                    <p style="margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.8);">Our certified valuers can provide a detailed assessment and optimization strategy for your property.</p>
+                                    <a href="#" onclick="showPage('contact')" style="display: inline-block; padding: 12px 30px; background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3)); color: #fff; text-decoration: none; border-radius: 25px; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">Schedule Free Consultation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+                
+            about: `
+                <div class="page-header">
+                    <div class="container">
+                        <h1 class="page-title">Meet Our Founders</h1>
+                        <p class="page-subtitle">Legal expertise meets property innovation. Founded by experienced legal practitioners who understand both the law and the business of property.</p>
+                    </div>
+                </div>
+
+                <section class="about-content">
+                    <div class="container">
+                        <div class="founders-grid">
+                            <div class="founder-card">
+                                <div class="founder-photo">
+                                    Professional Photo
+                                    <br><small>Miltiadis Vasileiou</small>
+                                </div>
+                                <h3 class="founder-name">Miltiadis Vasileiou</h3>
+                                <p class="founder-title">Co-Founder | Managing Director – Legal & Contracts</p>
+                                <div class="founder-bio">
+                                    <p>Miltiadis Vasileiou is a Co-Founder and Managing Director of Aphrodite Property Management, overseeing the legal and contractual framework of the company. A qualified litigation and contract lawyer, Miltiadis specializes in structuring property agreements that are robust, fair, and tailored to the needs of each client.</p>
+                                    <p>With a strong passion for real estate and a keen eye for legal detail, he ensures that every agreement—from leases and property sales to management contracts—is not just compliant, but protective of clients' long-term interests. Miltiadis believes in using the law to empower people, offering clarity and confidence in every transaction.</p>
+                                </div>
+                            </div>
+
+                            <div class="founder-card">
+                                <div class="founder-photo">
+                                    Professional Photo
+                                    <br><small>Kyriakos Drousiotis</small>
+                                </div>
+                                <h3 class="founder-name">Kyriakos Drousiotis</h3>
+                                <p class="founder-title">Co-Founder | Managing Director – Strategy & Client Relations</p>
+                                <div class="founder-bio">
+                                    <p>Kyriakos Drousiotis is a Co-Founder and Managing Director of Aphrodite Property Management, leading the company's strategic direction and client service approach. A corporate and real estate lawyer by profession, Kyriakos focuses on building long-term partnerships based on trust, transparency, and results.</p>
+                                    <p>He is deeply committed to helping individuals and businesses make the most of their properties through organized, responsive, and people-first management. Whether coordinating large-scale property portfolios or resolving daily issues with care, Kyriakos ensures that every client feels supported and every property is in good hands.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            
+            contact: `
+                <div class="page-header">
+                    <div class="container">
+                        <h1 class="page-title">Contact Us</h1>
+                        <p class="page-subtitle">Ready to experience stress-free property ownership? Contact us for a consultation and discover how we can help maximize your property investment.</p>
+                    </div>
+                </div>
+
+                <section class="contact-content">
+                    <div class="container">
+                        <div class="contact-grid">
+                            <div class="contact-info">
+                                <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #fff; position: relative; z-index: 2;">Get In Touch</h3>
+                                
+                                <div class="contact-item">
+                                    <h3>EMAIL</h3>
+                                    <p>info@aphroditepm.com.cy</p>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <h3>TELEPHONE</h3>
+                                    <p>+357 XX XXX XXX</p>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <h3>ADDRESS</h3>
+                                    <p>Cyprus Office Address<br>Postal Code, City</p>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <h3>CONSULTATION</h3>
+                                    <p>Schedule a free property assessment and service consultation</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-image">
+                                Cyprus Office Image
+                                <br><small>Professional office space</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `
+        };
+
+        // Enhanced page navigation with smooth transitions
+        function showPage(pageId) {
+            const mainContent = document.getElementById('main-content');
+            
+            // Add fade out effect
+            mainContent.classList.remove('page-transition', 'active');
+            
+            setTimeout(() => {
+                // Clear current content
+                mainContent.innerHTML = '';
+                
+                // Insert new content
+                if (pageContents[pageId]) {
+                    mainContent.innerHTML = pageContents[pageId];
+                    
+                    // Re-initialize calculator if on calculator page
+                    if (pageId === 'calculator') {
+                        initializeCalculator();
+                    }
+                }
+
+                // Update navigation active state
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                const currentNavLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+                if (currentNavLink && currentNavLink.classList.contains('nav-link')) {
+                    currentNavLink.classList.add('active');
+                }
+
+                // Add fade in effect
+                mainContent.classList.add('page-transition', 'active');
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Update page title
+                const pageTitles = {
+                    'home': 'Aphrodite Property Management - Complete Property Solutions in Cyprus',
+                    'services': 'Property Management Services - Aphrodite Property Management',
+                    'co-ownership': 'Co-Ownership Solutions - Aphrodite Property Management',
+                    'solutions': 'Complete Property Solutions - Aphrodite Property Management',
+                    'calculator': 'Property Revenue Calculator - Aphrodite Property Management',
+                    'about': 'About Our Founders - Aphrodite Property Management',
+                    'contact': 'Contact Us - Aphrodite Property Management'
+                };
+
+                if (pageTitles[pageId]) {
+                    document.title = pageTitles[pageId];
+                }
+            }, 300);
+        }
+
+        // Initialize calculator functionality
+        function initializeCalculator() {
+            const calculatorForm = document.getElementById('propertyCalculator');
+            if (calculatorForm) {
+                calculatorForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const location = document.getElementById('location').value;
+                    const propertyType = document.getElementById('propertyType').value;
+                    const bedrooms = parseInt(document.getElementById('bedrooms').value);
+                    const area = parseInt(document.getElementById('area').value);
+                    const condition = document.getElementById('condition').value;
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+
+                    // Basic validation
+                    if (!location || !propertyType || !area || !name || !email || !phone) {
+                        alert('Please fill in all required fields');
+                        return;
+                    }
+
+                    // Calculate property value (simplified algorithm)
+                    let basePrice = 0;
+                    const locationMultipliers = {
+                        'nicosia': 1.2,
+                        'limassol': 1.5,
+                        'larnaca': 1.0,
+                        'paphos': 1.1,
+                        'famagusta': 0.9
+                    };
+
+                    const typeMultipliers = {
+                        'apartment': 2500,
+                        'villa': 3500,
+                        'townhouse': 3000,
+                        'commercial': 4000
+                    };
+
+                    const conditionMultipliers = {
+                        'excellent': 1.2,
+                        'good': 1.0,
+                        'average': 0.8,
+                        'needs-renovation': 0.6
+                    };
+
+                    basePrice = area * typeMultipliers[propertyType] * locationMultipliers[location] * conditionMultipliers[condition];
+                    
+                    // Add bedroom premium for residential
+                    if (propertyType !== 'commercial') {
+                        basePrice += bedrooms * 15000;
+                    }
+
+                    const marketValue = Math.round(basePrice);
+                    const monthlyRent = Math.round(marketValue * 0.006); // 0.6% monthly yield
+                    const annualYield = 7.2; // 7.2% annual yield
+                    const managementFee = Math.round(monthlyRent * 0.12); // 12% management fee
+                    const netIncome = monthlyRent - managementFee;
+                    const airbnbIncome = Math.round(monthlyRent * 1.4); // 40% premium for Airbnb
+
+                    // Display results with animation
+                    setTimeout(() => {
+                        document.getElementById('marketValue').textContent = '€' + marketValue.toLocaleString();
+                        document.getElementById('monthlyRent').textContent = '€' + monthlyRent.toLocaleString();
+                        document.getElementById('annualYield').textContent = annualYield + '%';
+                        document.getElementById('netIncome').textContent = '€' + netIncome.toLocaleString();
+                        document.getElementById('airbnbIncome').textContent = '€' + airbnbIncome.toLocaleString();
+
+                        // Show results panel with animation
+                        const resultsPanel = document.getElementById('resultsPanel');
+                        resultsPanel.style.display = 'block';
+                        resultsPanel.style.opacity = '0';
+                        resultsPanel.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            resultsPanel.style.transition = 'all 0.6s ease';
+                            resultsPanel.style.opacity = '1';
+                            resultsPanel.style.transform = 'translateY(0)';
+                        }, 100);
+
+                        // Scroll to results
+                        resultsPanel.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+
+                        console.log('Lead captured:', { name, email, phone, location, propertyType, area, marketValue, monthlyRent });
+                    }, 500);
+                });
+            }
+        }
+
+        // Initialize page with enhanced loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            // Hide loading overlay
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                showPage('home');
+            }, 2000);
+        });
+
+        // Enhanced header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.08)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.05)';
+                header.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Add mouse movement parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const bg = document.querySelector('.animated-bg');
+            if (bg) {
+                bg.style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        setInterval(() => {
+            document.querySelectorAll('.value-item, .service-card, .solution-card, .solution-card-co, .founder-card').forEach(el => {
+                if (el && !el.hasAttribute('data-observed')) {
+                    observer.observe(el);
+                    el.setAttribute('data-observed', 'true');
+                }
+            });
+        }, 1000);
+    </script>
+</body>
+</html>
